@@ -16,10 +16,10 @@
 # 如果你有编译ipv6的话，‘去掉LAN口使用内置的 IPv6 管理’代码前面也加 # 注释掉
 
 cat >package/base-files/files/etc/networkip <<-EOF
-uci set network.lan.ipaddr='10.10.10.1'                                    # IPv4 地址(openwrt后台地址)
+uci set network.lan.ipaddr='192.168.50.13'                                    # IPv4 地址(openwrt后台地址)
 uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
-#uci set network.lan.gateway='10.10.10.1'                                   # IPv4 网关
-#uci set network.lan.broadcast='10.10.10.255'                               # IPv4 广播
+#uci set network.lan.gateway='192.168.50.1'                                   # IPv4 网关
+#uci set network.lan.broadcast='192.168.50.255'                               # IPv4 广播
 #uci set network.lan.dns='119.29.29.29 223.5.5.5'                         # DNS(多个DNS要用空格分开)
 #uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
 uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
@@ -47,7 +47,7 @@ sed -i 's/TARGET_rockchip/TARGET_rockchip\|\|TARGET_armvirt/g' package/lean/auto
 sed -i "s/OpenWrt /Deng Build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
 
 # Modify default IP（FROM 192.168.1.1 CHANGE TO 10.10.10.1）
-sed -i 's/192.168.1.1/10.10.10.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.50.13/g' package/base-files/files/bin/config_generate
 
 # Modify system hostname（FROM OpenWrt CHANGE TO OpenWrt-N1）
 # sed -i 's/OpenWrt/OpenWrt-N1/g' package/base-files/files/bin/config_generate
